@@ -1,9 +1,16 @@
 'use strict'
 var express = require("express"),
     app = express(),
-    port = process.env.PORT || 3000,
+    port = process.env.PORT || 3150,
     mongoose = require('mongoose'),
     Task = require('./api/models/todoListModel'),
+    BaseCategory = require('./api/models/baseCategory'),
+    Category = require('./api/models/category'),
+    Item = require('./api/models/item'),
+    CategoryRel = require('./api/models/categoryRel'),
+    Discount = require('./api/models/discount'),
+    ContactUs = require('./api/models/contactUs'),
+    // BaseCategoryController = require('./api/controllers/baseCategoyController'),
     bodyParser = require('body-parser');
 var shutting_down = false;
 var server = null;
@@ -20,6 +27,27 @@ app.use(function (req, res, next) {
     // return res;
     // res.status(404).send({url: req.originalUrl + ' not found'});
 });
+
+const webapp = __dirname + '/api/web-app';
+app.use(express.static(webapp));
+// app.use(express.static(webapp+'/jxjljzv'))
+    // For UI
+    app.get('/', (req, res) => {
+        res.sendFile(__dirname + '/api/web-app'+'/login.html');
+    });
+
+    app.post('/auth', (req, res) => {
+        // res.sendFile(__dirname + '/api/web-app'+'/login.html');
+        const inp = req.body;
+        console.log(JSON.stringify(req.body));
+        // TODO: Remove true from below condition after development
+        if(inp.username === 'kbhai' && inp.password === 'a886Uni1' || true){
+            res.sendfile(__dirname + '/api/web-app/jxjljzv/main.html')
+        }
+
+    });
+    
+    // api
 
 var routes = require('./api/routes/todoListRoutes');
 routes(app);

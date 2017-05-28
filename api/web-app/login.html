@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Universal Crud App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+  <script src="mainController.js"></script>
+</head>
+<body ng-app="jewelCrud" ng-controller="mainController">
+  
+  <h1>Login</h1>
+    <form action="/auth" method="POST">
+        <input type="text" placeholder="username" name="username"><br>
+        <input type="password" placeholder="password" name="password"><br>
+        <button type="submit" ng-click="submit()">Submit</button>
+        
+    </form>
+    <br><br>
+   {{tryAgain}}  
+</body>
+</html>
