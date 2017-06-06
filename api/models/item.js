@@ -19,6 +19,7 @@ var item = new Schema({
     },
     weight: {
         type: Number
+    // Weight in grams
     },
     last_update: {
         type: Date,
