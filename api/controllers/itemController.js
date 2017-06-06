@@ -28,7 +28,7 @@ exports.create_a_item = function (req, res) {
 };
 
 exports.update_a_item = function (req, res) {
-    Item.findOneAndUpdate(req.params.ItemId, req.body, { new: true }, function (err, Item) {
+    Item.findOneAndUpdate({_id: req.params.id}, req.body, { new: true }, function (err, Item) {
         if (err)
             res.send(err);
         res.json(Item);
@@ -36,9 +36,8 @@ exports.update_a_item = function (req, res) {
 };
 
 exports.delete_a_item = function (req, res) {
-    Item.remove({
-        _id: req.params.ItemId
-    }, function (err, Item) {
+    
+   Item.findByIdAndRemove(req.params.id, {}, function (err, Item) {
         if (err)
             res.send(err);
         res.json({ message: 'Item successfully deleted' });

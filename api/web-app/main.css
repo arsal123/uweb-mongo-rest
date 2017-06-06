@@ -1,3 +1,15 @@
+body {
+    padding: 9px 30px;
+    margin-bottom: 14px;
+}
 p + p {
     margin-top: 30px; 
+}
+.highlight {
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+}
+li {
+    padding-bottom: 10px;   
 }
