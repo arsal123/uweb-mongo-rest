@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MY APP</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" >
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+<script src="baseCategoryController.js"></script>
+<link rel="stylesheet" href="../main.css">
+<body ng-app="jewelCrud" ng-controller="baseCategoryController">
+<p>
+<h4>List of Base Categories in database</h4>
+<div class="">
+  <div class="row">
+    <div class="col-2">Id</div>
+    <div class="col-2">Name</div>
+    <div class="col-2">Description</div><div class="col-2">Last Update</div><div class="col-3">Operations</div>
+  </div>
+  <div class="row" ng-repeat="cat in categories">
+    <div class="col-2">{{cat._id}}</div>
+    <div class="col-2">{{cat.name}}</div>
+    <div class="col-2">{{cat.desc}}</div>
+    <div class="col-2">{{cat.last_update}}</div>
+    <div class="col-3">
+      <button ng-click="startUpdate(cat)">Update</button>&nbsp;
+      <button ng-click="deleteCategory(cat)">Delete</button>
+    </div>
+  </div>
+</div>
+</p>
+<p>
+  <h4>Create Base Category</h4>
+<form name="baseCategoryForm">
+    <input type="text" ng-model="cat.name" placeholder="name" name="name" required>
+    <!--<span ng-show="baseCategoryForm.name.$touched && baseCategoryForm.name.$invalid">The name is required.</span>-->
+    <input type="text" ng-model="cat.desc" placeholder="desc" name="desc">
+    <button ng-if="addOperation" ng-click="addCategory()">Add</button>
+    <button ng-if="updateOperation" ng-click="updateCategory(cat)">Update</button>
+</form>
+</p>
+</body>
+</html>
