@@ -36,11 +36,11 @@ exports.update_a_base_category = function (req, res) {
 };
 
 exports.delete_a_base_category = function (req, res) {
-    BaseCategory.remove({
-        _id: req.params.BaseCategoryId
-    }, function (err, BaseCategory) {
-        if (err)
+    BaseCategory.findByIdAndRemove(req.params.id, {}, function (err, Category) {
+        if (err){
+            console.error('Error deleting base category: ' + JSON.stringify(err));
             res.send(err);
+        }
         res.json({ message: 'BaseCategory successfully deleted' });
     });
 };
