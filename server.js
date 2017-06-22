@@ -35,12 +35,12 @@ app.use(express.static(webapp));
         res.sendFile(__dirname + '/api/web-app'+'/login.html');
     });
 
-    app.post('/auth', (req, res) => {
+    app.all('/auth', (req, res) => {
         // res.sendFile(__dirname + '/api/web-app'+'/login.html');
         const inp = req.body;
         console.log(JSON.stringify(req.body));
         // TODO: Remove true from below condition after development
-        if(inp.username === 'kbhai' && inp.password === 'a886Uni1' || true){
+        if(inp.username === 'kbhai' && inp.password === 'aa' || true){
             res.sendfile(__dirname + '/api/web-app/jxjljzv/main.html')
         }
 
