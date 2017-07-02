@@ -4,25 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <title>JEWEL DATA ENTRY APP</title>
-  <link href="main.css" rel="stylesheet">
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+  <link href="main.css" rel="stylesheet">
+
+  <script src="../mainController.js"></script>
+
 </head>
 
-<body class="highlight" >
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
-
+<body class="" ng-app="jewelCrud">
   <!--main-->
-	<ui-view></ui-view>
-	<!--main-->
-
-  <h1>Simple Crud App for Our Universal DB</h1>
-  <ul>
-  <li><a href="jxjljzv/baseCategory.html">Base Category</a></li>
-  <li><a href="jxjljzv/category.html">Category</a></li>
-  <li><a href="jxjljzv/item.html">Item</a></li>
-  </ul>
+  <!--<ui-view></ui-view>-->
+  <div w3-include-html="list.html"></div>
+  <!--main-->
+  <script>
+    w3.includeHTML();
+  </script>
 </body>
 
 </html>

@@ -1,17 +1,15 @@
 let crudApp = angular.module('jewelCrud', ['ui.router']);
 
-crudApp.conf(function ($stateProvider) {
-  let mainState = {
-    name: 'main',
-    url: '/',
-    templateUrl: 'main.html'
-  }
+// crudApp.config(function ($stateProvider) {
+//   let mainState = {
+//     name: 'main',
+//     url: '/auth',
+//     templateUrl: 'list.html'
+//   }
 
+//   $stateProvider.state(mainState);
   
-
-  $stateProvider.state(mainState);
-  
-});
+// });
 
 crudApp.controller('mainController', ['$scope', '$interval', function($scope, $interval){
     $scope.test = 'Hahaha';

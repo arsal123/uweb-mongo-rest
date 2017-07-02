@@ -13,3 +13,7 @@ p + p {
 li {
     padding-bottom: 10px;   
 }
+.heading-height {
+    line-height: 3em;
+    margin-bottom: 1em; 
+}

@@ -29,24 +29,23 @@ app.use(function (req, res, next) {
 
 const webapp = __dirname + '/api/web-app';
 app.use(express.static(webapp));
-// app.use(express.static(webapp+'/jxjljzv'))
-    // For UI
-    app.get('/', (req, res) => {
-        res.sendFile(__dirname + '/api/web-app'+'/login.html');
-    });
+app.use(express.static(webapp+'/jxjljzv'))
+// For UI
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/api/web-app' + '/login.html');
+});
 
-    app.all('/auth', (req, res) => {
-        // res.sendFile(__dirname + '/api/web-app'+'/login.html');
-        const inp = req.body;
-        console.log(JSON.stringify(req.body));
-        // TODO: Remove true from below condition after development
-        if(inp.username === 'kbhai' && inp.password === 'aa' || true){
-            res.sendfile(__dirname + '/api/web-app/jxjljzv/main.html')
-        }
+app.all('/auth', (req, res) => {
+    // res.sendFile(__dirname + '/api/web-app'+'/login.html');
+    const inp = req.body;
+    console.log(JSON.stringify(req.body));
+    // TODO: Remove true from below condition after development
+    if (inp.username === 'kbhai' && inp.password === 'aa' || true) {
+        res.sendfile(__dirname + '/api/web-app/jxjljzv/main.html')
+    }
+});
 
-    });
-    
-    // api
+// api
 
 var routes = require('./api/routes/todoListRoutes');
 routes(app);
