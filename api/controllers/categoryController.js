@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var mongoose = require('mongoose'),
     Category = mongoose.model('category');
@@ -15,7 +15,7 @@ exports.read_a_category = function (req, res) {
     Category.findById(req.params.CategoryId, function (err, Category) {
         if (err) res.send(err);
         res.json(Category);
-    })
+    });
 };
 
 exports.create_a_category = function (req, res) {
