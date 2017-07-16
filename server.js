@@ -69,9 +69,9 @@ app.get('/me', function(req, res){
     res.json(req.user.username);
 });
 
-// var newUser = new Uesr();
-// newUser.username = 'Admin4'
-// newUser.password = newUser('password')
+// var newUser = new User();
+// newUser.username = 'admin1';
+// newUser.password = newUser.generateHash('siddiqui1');
 // newUser.save();
 
 // app.all('/auth', (req, res) => {
