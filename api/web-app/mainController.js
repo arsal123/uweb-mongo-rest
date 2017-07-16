@@ -16,7 +16,7 @@ crudApp.controller('mainController', ['$scope', '$interval', function($scope, $i
     $scope.submit = function(){
         $interval(function(){
             $scope.tryAgain = 'Wrong username or password. Try Again';
-        }, 100)
+        }, 100);
         
-    }
-}])
+    };
+}]);

@@ -10,9 +10,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
 <script src="itemController.js"></script>
+
 <link rel="stylesheet" href="../main.css">
 <body ng-app="jewelCrud" ng-controller="itemController">
+  <div w3-include-html="menu.html"></div>
 <p>
 <h4>List of Item in database</h4>
 <div class="">
@@ -56,5 +59,8 @@
     <button ng-if="updateOperation" ng-click="updateItem(item)">Update</button>
 </form>
 </p>
+<script>
+    w3.includeHTML();
+</script>
 </body>
 </html>

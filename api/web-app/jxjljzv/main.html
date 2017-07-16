@@ -15,12 +15,14 @@
   <link href="main.css" rel="stylesheet">
 
   <script src="../mainController.js"></script>
+  <script src="userController.js"></script>
 
 </head>
 
-<body class="" ng-app="jewelCrud">
+<body class="" ng-app="jewelCrud" ng-controller="userController">
   <!--main-->
   <!--<ui-view></ui-view>-->
+  <h2>WELCOME {{user.data}}</h2>
   <div w3-include-html="list.html"></div>
   <!--main-->
   <script>

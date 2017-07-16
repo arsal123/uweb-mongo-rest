@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var mongoose = require('mongoose'),
     Item = mongoose.model('item');
@@ -15,7 +15,7 @@ exports.read_a_item = function (req, res) {
     Item.findById(req.params.ItemId, function (err, Item) {
         if (err) res.send(err);
         res.json(Item);
-    })
+    });
 };
 
 exports.create_a_item = function (req, res) {
