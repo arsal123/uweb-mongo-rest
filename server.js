@@ -35,7 +35,7 @@ app.use(session({
     secret: 'uwebdbappsession',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false}
+    cookie: { maxAge: 3600000}
 })); // this should be hidden 
 app.use(passport.initialize());
 app.use(passport.session()); // creates a persistent login sessions
