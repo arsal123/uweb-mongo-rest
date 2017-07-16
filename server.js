@@ -20,6 +20,7 @@ var server = null;
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://adminarsal:jewelArsal@localhost:27017/uwebdb');
+
 require('./api/controllers/userController')(passport);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -46,7 +47,7 @@ app.get('/', (req, res) => {
 });
 
 app.all('/auth', passport.authenticate('local-login'), function(req, res){
-    console.log('----------print here------------------', req, res);
+    
     res.sendfile(__dirname + '/api/web-app/jxjljzv/main.html');
 });
 
@@ -61,6 +62,11 @@ app.use(function (req, res, next) {
     }
     // return res;
     // res.status(404).send({url: req.originalUrl + ' not found'});
+});
+
+app.get('/me', function(req, res){
+    console.log('----------print here------------------', req.user.username);
+    res.json(req.user.username);
 });
 
 // var newUser = new Uesr();
