@@ -1,0 +1,18 @@
+
+
+body {
+    background: #175a5a !important;
+}
+
+.wrapper {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.display {
+    max-width: 1000px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #eee;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
