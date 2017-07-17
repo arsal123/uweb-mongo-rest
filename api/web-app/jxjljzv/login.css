@@ -15,6 +15,7 @@ body {
     margin: 0 auto;
     background-color: #eee;
     border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 46px;
 
 .form-signin-heading,
 .checkbox {
