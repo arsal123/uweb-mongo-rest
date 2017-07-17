@@ -1,8 +1,18 @@
 body {
 
-
+    background: #175a5a !important;
     padding: 9px 20px;
     margin-bottom: 14px;
+}
+.display {
+    max-width: 60em;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #eee;
+    border: 25px solid rgba(0, 0, 0, 0.1);
+    border-radius: 46px;
+
+
 }
 p + p {
     margin-top: 30px; 
