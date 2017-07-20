@@ -25,7 +25,6 @@ require('./api/controllers/userController')(passport);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 const webapp = __dirname + '/api/web-app';
 app.use(express.static(webapp));
 app.use(express.static(webapp+'/jxjljzv'));
@@ -53,7 +52,7 @@ app.all('/auth', passport.authenticate('local-login'), function(req, res){
 
 app.use(function (req, res, next) {
     console.log('Middleware Interrupt: ' + res.statusCode);
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated() || req.url.includes('/item')){
             console.log('user is authenicated');
             next();
     } else {
