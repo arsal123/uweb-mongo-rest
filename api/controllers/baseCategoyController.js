@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var mongoose = require('mongoose'),
     BaseCategory = mongoose.model('base_category');
@@ -15,7 +15,7 @@ exports.read_a_base_category = function (req, res) {
     BaseCategory.findById(req.params.BaseCategoryId, function (err, BaseCategory) {
         if (err) res.send(err);
         res.json(BaseCategory);
-    })
+    });
 };
 
 exports.create_a_base_category = function (req, res) {

@@ -10,56 +10,61 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
 <script src="itemController.js"></script>
+
 <link rel="stylesheet" href="../main.css">
 <body ng-app="jewelCrud" ng-controller="itemController">
+  <div w3-include-html="menu.html"></div>
 <div class="wrapper">
     <div class="display">
-        <p>
-        <h4>List of Item in database</h4>
-        <div class="">
-            <div class="row">
-                <div class="col-2">Name</div>
-                <div class="col-2">Description</div>
-                <div class="col-1">Price</div>
-                <div class="col-1">Weight</div>
-                <div class="col-1">Last Update</div>
-                <div class="col-3">Img Path</div>
-                <div class="col-2">Operations</div>
-            </div>
-            <div class="row" ng-repeat="item in items">
-                <div class="col-2">{{item.name}}</div>
-                <div class="col-2">{{item.desc}}</div>
-                <div class="col-1">{{item.price}}</div>
-                <div class="col-1">{{item.weight}}</div>
-                <div class="col-1">{{item.last_update | date}}</div>
-                <div class="col-3">{{item.img_path}}</div>
-                <div class="col-2">
-                    <button ng-click="startUpdate(item)">Update</button>&nbsp;
-                    <button ng-click="deleteItem(item)">Delete</button>
-                </div>
-            </div>
-        </div>
-        </p>
-        <p>
-        <h4>Create Item</h4>
-        <form name="itemForm">
-            <input type="text" ng-model="item.name" placeholder="name" name="name" required>
-            <!--<span ng-show="categoryForm.name.$touched && categoryForm.name.$invalid">The name is required.</span>-->
-            <input type="text" ng-model="item.desc" placeholder="desc" name="desc">
-            <select name="catSelect" ng-model="item.category_id" required>
-                <option value="">Please select category<option>
-                <option ng-repeat="cat in data.categories" value="cat._id">{{cat.name}}</option>
-            </select>
-            <input type="text" ng-model="item.price" placeholder="price" name="price">
-            <input type="text" ng-model="item.weight" placeholder="weight">
-            <input type="text" ng-model="item.img_path" placeholder="image path">
-            <button ng-if="addOperation" ng-click="addItem()">Add</button>
-            <button ng-if="updateOperation" ng-click="updateItem(item)">Update</button>
-        </form>
-        </p>
-
+  <p>
+<h4>List of Item in database</h4>
+<div class="">
+  <div class="row">
+    <div class="col-2">Name</div>
+    <div class="col-2">Description</div>
+    <div class="col-1">Price</div>
+    <div class="col-1">Weight</div>
+    <div class="col-1">Last Update</div>
+    <div class="col-3">Img Path</div>
+    <div class="col-2">Operations</div>
+  </div>
+  <div class="row" ng-repeat="item in items">
+    <div class="col-2">{{item.name}}</div>
+    <div class="col-2">{{item.desc}}</div>
+    <div class="col-1">{{item.price}}</div>
+    <div class="col-1">{{item.weight}}</div>
+    <div class="col-1">{{item.last_update | date}}</div>
+    <div class="col-3">{{item.img_path}}</div>
+    <div class="col-2">
+      <button ng-click="startUpdate(item)">Update</button>&nbsp;
+      <button ng-click="deleteItem(item)">Delete</button>
     </div>
 </div>
+</p>
+<p>
+  <h4>Create Item</h4>
+<form name="itemForm">
+    <input type="text" ng-model="item.name" placeholder="name" name="name" required>
+    <!--<span ng-show="categoryForm.name.$touched && categoryForm.name.$invalid">The name is required.</span>-->
+    <input type="text" ng-model="item.desc" placeholder="desc" name="desc">
+    <select name="catSelect" ng-model="item.category_id" required>
+      <option value="">Please select category<option>
+      <option ng-repeat="cat in data.categories" value="cat._id">{{cat.name}}</option>
+    </select>
+    <input type="text" ng-model="item.price" placeholder="price" name="price">
+    <input type="text" ng-model="item.weight" placeholder="weight">
+    <input type="text" ng-model="item.img_path" placeholder="image path">
+    <button ng-if="addOperation" ng-click="addItem()">Add</button>
+    <button ng-if="updateOperation" ng-click="updateItem(item)">Update</button>
+</form>
+</p>
+<script>
+    w3.includeHTML();
+</script>
+    </div>
+</div>
+
 </body>
 </html>
