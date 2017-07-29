@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MY APP</title>
+
+
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
@@ -14,34 +16,37 @@
 <script src="https://www.w3schools.com/lib/w3.js"></script>
 <script src="baseCategoryController.js"></script>
 <link rel="stylesheet" href="../main.css">
+<link rel="stylesheet" href="../style.css">
 
 <body ng-app="jewelCrud" ng-controller="baseCategoryController">
+<div class="wrapper">
+  <div class="display">
   <div w3-include-html="menu.html"></div>
-  <p>
+    <p>
     <h4 class="heading-height">List of Base Categories in database</h4>
-    <table class="table">
-      <thead >
-        <th >#</th>
-        <th >Name</th>
-        <th >Description</th>
-        <th >Last Update</th>
-        <th >Operations</th>
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+      <th >#</th>
+      <th >Name</th>
+      <th >Description</th>
+      <th >Last Update</th>
+      <th >Operations</th>
       </thead>
       <tbody>
-        <tr  ng-repeat="cat in categories">
-          <td >{{$index}}</td>
-          <td >{{cat.name}}</td>
-          <td >{{cat.desc}}</td>
-          <td >{{cat.last_update | date}}</td>
-          <td >
-            <button ng-click="startUpdate(cat)">Update</button>&nbsp;
-            <button ng-click="deleteCategory(cat)">Delete</button>
-          </td>
-        </tr>
+      <tr  ng-repeat="cat in categories">
+        <td >{{$index}}</td>
+        <td >{{cat.name}}</td>
+        <td >{{cat.desc}}</td>
+        <td >{{cat.last_update | date}}</td>
+        <td >
+          <button ng-click="startUpdate(cat)">Update</button>&nbsp;
+          <button ng-click="deleteCategory(cat)">Delete</button>
+        </td>
+      </tr>
       </tbody>
     </table>
-  </p>
-  <p>
+    </p>
+    <p>
     <h4 style="line-height: 3em;">Create Base Category</h4>
     <form name="baseCategoryForm">
       <input type="text" ng-model="cat.name" placeholder="name" name="name" required>
@@ -50,11 +55,13 @@
       <button ng-if="addOperation" ng-click="addCategory()">Add</button>
       <button ng-if="updateOperation" ng-click="updateCategory(cat)">Update</button>
     </form>
-  </p>
-  <div w3-include-html="../components/footer.html"></div>
-  <script>
-w3.includeHTML();
-</script>
+    </p>
+    <div w3-include-html="../components/footer.html"></div>
+    <script>
+        w3.includeHTML();
+    </script>
+  </div>
+</div>
 </body>
 
 </html>
