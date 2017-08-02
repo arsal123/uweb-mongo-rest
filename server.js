@@ -9,6 +9,7 @@ var express = require("express"),
     CategoryRel = require('./api/models/categoryRel'),
     Discount = require('./api/models/discount'),
     ContactUs = require('./api/models/contactUs'),
+    Payment = require('./api/models/payment'),
     // BaseCategoryController = require('./api/controllers/baseCategoyController'),
     User = require('./api/models/user'),
     bodyParser = require('body-parser'),
@@ -52,7 +53,7 @@ app.all('/auth', passport.authenticate('local-login'), function(req, res){
 
 app.use(function (req, res, next) {
     console.log('Middleware Interrupt: ' + res.statusCode);
-    if (req.isAuthenticated() || req.url.includes('/item')){
+    if (req.isAuthenticated() || req.url.includes('/item') || req.url.includes('/thing')){
             console.log('user is authenicated');
             next();
     } else {
