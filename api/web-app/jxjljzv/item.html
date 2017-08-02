@@ -16,7 +16,9 @@
 <link rel="stylesheet" href="../main.css">
 <body ng-app="jewelCrud" ng-controller="itemController">
   <div w3-include-html="menu.html"></div>
-<p>
+<div class="wrapper">
+    <div class="display">
+  <p>
 <h4>List of Item in database</h4>
 <div class="">
   <div class="row">
@@ -39,7 +41,6 @@
       <button ng-click="startUpdate(item)">Update</button>&nbsp;
       <button ng-click="deleteItem(item)">Delete</button>
     </div>
-  </div>
 </div>
 </p>
 <p>
@@ -62,5 +63,8 @@
 <script>
     w3.includeHTML();
 </script>
+    </div>
+</div>
+
 </body>
 </html>
