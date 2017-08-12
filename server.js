@@ -10,6 +10,7 @@ var express = require("express"),
     Discount = require('./api/models/discount'),
     ContactUs = require('./api/models/contactUs'),
     Payment = require('./api/models/payment'),
+    Authorize = require('./api/models/onAuthorize'),
     // BaseCategoryController = require('./api/controllers/baseCategoyController'),
     User = require('./api/models/user'),
     bodyParser = require('body-parser'),
@@ -53,9 +54,11 @@ app.all('/auth', passport.authenticate('local-login'), function(req, res){
 
 app.use(function (req, res, next) {
     console.log('Middleware Interrupt: ' + res.statusCode);
-    if (req.isAuthenticated() || req.url.includes('/item') || req.url.includes('/thing')){
-            console.log('user is authenicated');
+    if (req.isAuthenticated() || req.url.includes('/item') || req.url.includes('/thing') || req.url.includes('/onAuthorize')){
+
+            console.log('reqeust is entered');
             next();
+
     } else {
         console.log('user is NOT authenicated');
         res.redirect('/');
@@ -86,7 +89,7 @@ app.get('/me', function(req, res){
 // });
 
 // api
-var routes = require('./api/routes/todoListRoutes');
+var routes = require('./api/routes/uwebMongo');
 routes(app);
 
 server = app.listen(port);
