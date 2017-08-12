@@ -20,6 +20,9 @@ var mongoose = require('mongoose'),
 // };
 
 exports.create_a_thing = function (req, res) {
+
+    console.log(logPrefix + 'Inside payment controller save');
+
     console.log(logPrefix + JSON.stringify(req.body));
     var new_payment = new Payment(req.body);
     new_payment.save(function (err, payment) {
