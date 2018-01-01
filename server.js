@@ -69,21 +69,23 @@ app.get('/me', function(req, res){
     res.json(req.user.username);
 });
 
-// var newUser = new User();
-// newUser.username = 'admin1';
-// newUser.password = newUser.generateHash('siddiqui1');
-// newUser.save();
+// This is how to make a new user
+    // var newUser = new User();
+    // newUser.username = 'admin1';
+    // newUser.password = newUser.generateHash('siddiqui1');
+    // newUser.save();
 
-// app.all('/auth', (req, res) => {
-//     // res.sendFile(__dirname + '/api/web-app'+'/login.html');
-//     const inp = _.pick(req.body, 'username', 'password');
-//     console.log(inp);
-    
-//     // TODO: Remove true from below condition after development
-//     if (inp.username === 'kbhai' && inp.password === 'aa' || true) {
-//         res.sendfile(__dirname + '/api/web-app/jxjljzv/main.html');
-//     }
-// });
+// old code for auth
+    // app.all('/auth', (req, res) => {
+    //     // res.sendFile(__dirname + '/api/web-app'+'/login.html');
+    //     const inp = _.pick(req.body, 'username', 'password');
+    //     console.log(inp);
+        
+    //     // TODO: Remove true from below condition after development
+    //     if (inp.username === 'kbhai' && inp.password === 'aa' || true) {
+    //         res.sendfile(__dirname + '/api/web-app/jxjljzv/main.html');
+    //     }
+    // });
 
 // api
 var routes = require('./api/routes/todoListRoutes');
