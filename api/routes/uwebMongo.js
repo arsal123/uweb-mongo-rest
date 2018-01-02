@@ -1,9 +1,10 @@
 'use strict';
 module.exports = function (app) {
-    
+
 
     var baseCategory = require('../controllers/baseCategoyController');
-
+    var thing = require('../controllers/paymentController');
+    var onAuthorize = require('../controllers/onAuthorizeController')
 
     app.route('/baseCategory')
         .get(baseCategory.list_all_base_category)
@@ -71,5 +72,11 @@ module.exports = function (app) {
         .get(contactUs.read_a_contact_us)
         .put(contactUs.update_a_contact_us)
         .delete(contactUs.delete_a_contact_us);
+
+    app.route('/thing')
+        .post(thing.create_a_thing);
+
+    app.route('/onAuthorize')
+        .post(onAuthorize.create_authorize);
 };
 

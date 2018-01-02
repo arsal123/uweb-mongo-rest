@@ -1,0 +1,31 @@
+
+
+body {
+    background: #175a5a !important;
+
+}
+
+.wrapper {
+    margin-top: 5px;
+    margin-bottom: 80px;
+}
+.display {
+    max-width: 60em;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #eee;
+    border: 25px solid rgba(0, 0, 0, 0.1);
+    border-radius: 46px;
+
+
+}
+
+.heading {
+    border-bottom: double;
+}
+
+.listing {
+    font-size: large;
+    color: chocolate;
+
+}
