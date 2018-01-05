@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function (app) {
+module.exports = function (app, upload) {
 
 
     var baseCategory = require('../controllers/baseCategoyController');
@@ -48,6 +48,9 @@ module.exports = function (app) {
         .get(item.read_a_item)
         .put(item.update_a_item)
         .delete(item.delete_a_item);
+
+    app.route('/item/fileupload')
+        .post(upload.any(), item.upload_a_img);
 
     var discount =
         require('../controllers/discountController');

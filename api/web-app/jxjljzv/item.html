@@ -56,6 +56,8 @@
     <input type="text" ng-model="item.price" placeholder="price" name="price">
     <input type="text" ng-model="item.weight" placeholder="weight">
     <input type="text" ng-model="item.img_path" placeholder="image path">
+    <input type="file" file-model="files">
+      <button ng-click="uploadImg()">upload</button>
     <button ng-if="addOperation" ng-click="addItem()">Add</button>
     <button ng-if="updateOperation" ng-click="updateItem(item)">Update</button>
 </form>

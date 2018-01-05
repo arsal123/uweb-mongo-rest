@@ -16,7 +16,8 @@ var express = require("express"),
     bodyParser = require('body-parser'),
     _ = require('underscore'),
     session = require('express-session'),
-    passport = require('passport');
+    passport = require('passport'),
+    multer = require('multer'); // multer acts as a middleware
 var shutting_down = false;
 var server = null;
 
@@ -40,6 +41,20 @@ app.use(session({
 })); // this should be hidden 
 app.use(passport.initialize());
 app.use(passport.session()); // creates a persistent login sessions
+
+// Rename the file
+var storage = multer.diskStorage({
+    destination: function(req, file, cb){ 
+        cb(null, __dirname + '/images/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-'+ file.originalname);
+    }
+});
+
+
+var upload = multer({ storage: storage });
+
 //app.use(flash()); // use connect-flash for flash messages stored in sessions
 
 // For UI
@@ -92,7 +107,7 @@ app.get('/me', function(req, res){
 
 // api
 var routes = require('./api/routes/uwebMongo');
-routes(app);
+routes(app, upload);
 
 server = app.listen(port);
 console.log('todo list RESTful API server started on: ' + port);
