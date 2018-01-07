@@ -1,5 +1,17 @@
 (function () {
     angular.module('jewelCrud', [])
+        .directive('fileModel', ['$parse', function($parse){
+            return {
+                restrict: 'A',
+                link: function(scope, element, attrs) {
+                    console.log(element);
+                    element.on('change', function() {
+                        $parse(attrs.fileModel).assign(scope, element[0].files);
+                        scope.$apply();
+                    });
+                }
+            };
+        }])
         .controller('itemController', ['$scope', '$http', '$log', function ($scope, $http, $log) {
 
 
@@ -88,6 +100,30 @@
                         getItems();
                     })
             }
+
+            $scope.uploadImg = () => {
+                var formData = new FormData();
+                console.log($scope.files);
+                angular.forEach($scope.files, function(file){
+                    formData.append('file', file);
+                });
+
+                $http({
+                    method: 'POST',
+                    url: '/item/fileupload',
+                    data: formData,
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+
+                }).then(function (res){
+                    console.log(res);
+                    
+                }, function(err) {
+                    console.log(err);
+                });
+            };
 
             // Start of command execution
             init();

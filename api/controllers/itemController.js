@@ -3,6 +3,7 @@
 var mongoose = require('mongoose'),
     Item = mongoose.model('item');
 
+
 exports.list_all_item = function (req, res) {
     // console.log('req for Items coming')
     Item.find({}, function (err, Item) {
@@ -25,6 +26,18 @@ exports.create_a_item = function (req, res) {
             res.send(err);
         res.json(category);
     });
+};
+
+exports.upload_a_img = function(req, res) {
+    // req.file is the contain the files
+    // req.body will hold the text fields, if there were any
+    // console.log(req.files);
+    if (req.files) {
+        res.send('Successfully uploaded');
+    } else {
+        // throw an error
+    }
+
 };
 
 exports.update_a_item = function (req, res) {
