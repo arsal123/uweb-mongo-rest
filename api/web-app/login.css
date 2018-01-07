@@ -32,7 +32,6 @@ body {
     height: auto;
     padding: 10px;
 
-
 &:focus {
      z-index: 2;
  }

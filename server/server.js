@@ -1,18 +1,19 @@
 'use strict';
 var express = require("express"),
+    path = require('path'),
     app = express(),
     port = process.env.PORT || 3150,
     mongoose = require('mongoose'),
-    BaseCategory = require('./api/models/baseCategory'),
-    Category = require('./api/models/category'),
-    Item = require('./api/models/item'),
-    CategoryRel = require('./api/models/categoryRel'),
-    Discount = require('./api/models/discount'),
-    ContactUs = require('./api/models/contactUs'),
-    Payment = require('./api/models/payment'),
-    Authorize = require('./api/models/onAuthorize'),
+    BaseCategory = require('./../api/models/baseCategory'),
+    Category = require('./../api/models/category'),
+    Item = require('./../api/models/item'),
+    CategoryRel = require('./../api/models/categoryRel'),
+    Discount = require('./../api/models/discount'),
+    ContactUs = require('./../api/models/contactUs'),
+    Payment = require('./../api/models/payment'),
+    Authorize = require('./../api/models/onAuthorize'),
     // BaseCategoryController = require('./api/controllers/baseCategoyController'),
-    User = require('./api/models/user'),
+    User = require('./../api/models/user'),
     bodyParser = require('body-parser'),
     _ = require('underscore'),
     session = require('express-session'),
@@ -24,13 +25,13 @@ var server = null;
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://adminarsal:jewelArsal@localhost:27017/uwebdb');
 
-require('./api/controllers/userController')(passport);
+require('./../api/controllers/userController')(passport);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const webapp = __dirname + '/api/web-app';
-app.use(express.static(webapp));
-app.use(express.static(webapp+'/jxjljzv'));
+const webapp = __dirname + '/../api/web-app';
+app.use(express.static(path.resolve(webapp)));
+app.use(express.static(path.resolve(webapp+'/jxjljzv')));
 
 // Require for passport 
 app.use(session({ 
@@ -58,13 +59,12 @@ var upload = multer({ storage: storage });
 //app.use(flash()); // use connect-flash for flash messages stored in sessions
 
 // For UI
-app.get('/', (req, res) => {    
-    res.sendFile(__dirname + '/api/web-app' + '/login.html');
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname + '/../api/web-app/login.html'));
 });
 
 app.all('/auth', passport.authenticate('local-login'), function(req, res){
-    
-    res.sendfile(__dirname + '/api/web-app/jxjljzv/main.html');
+    res.sendfile(path.resolve(__dirname + '/../api/web-app/jxjljzv/main.html'));
 });
 
 app.use(function (req, res, next) {
@@ -78,8 +78,6 @@ app.use(function (req, res, next) {
         console.log('user is NOT authenicated');
         res.redirect('/');
     }
-    // return res;
-    // res.status(404).send({url: req.originalUrl + ' not found'});
 });
 
 app.get('/me', function(req, res){
@@ -99,14 +97,13 @@ app.get('/me', function(req, res){
     //     const inp = _.pick(req.body, 'username', 'password');
     //     console.log(inp);
         
-    //     // TODO: Remove true from below condition after development
     //     if (inp.username === 'kbhai' && inp.password === 'aa' || true) {
     //         res.sendfile(__dirname + '/api/web-app/jxjljzv/main.html');
     //     }
     // });
 
 // api
-var routes = require('./api/routes/uwebMongo');
+var routes = require('./../api/routes/uwebMongo');
 routes(app, upload);
 
 server = app.listen(port);
