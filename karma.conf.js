@@ -9,8 +9,8 @@ module.exports = function(config) {
             'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js',
             'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js',
             'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js',
-            'api/web-app/**/*.js',
-            'api/web-app/**/*.html',
+            'client/api/web-app/**/*.js',
+            'client/api/web-app/**/*.html',
             'test/**/*.js'
         ],
 

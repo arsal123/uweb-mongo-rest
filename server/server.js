@@ -4,16 +4,16 @@ var express = require("express"),
     app = express(),
     port = process.env.PORT || 3150,
     mongoose = require('mongoose'),
-    BaseCategory = require('./../api/models/baseCategory'),
-    Category = require('./../api/models/category'),
-    Item = require('./../api/models/item'),
-    CategoryRel = require('./../api/models/categoryRel'),
-    Discount = require('./../api/models/discount'),
-    ContactUs = require('./../api/models/contactUs'),
-    Payment = require('./../api/models/payment'),
-    Authorize = require('./../api/models/onAuthorize'),
+    BaseCategory = require('./../client/api/models/baseCategory'),
+    Category = require('./../client/api/models/category'),
+    Item = require('./../client/api/models/item'),
+    CategoryRel = require('./../client/api/models/categoryRel'),
+    Discount = require('./../client/api/models/discount'),
+    ContactUs = require('./../client/api/models/contactUs'),
+    Payment = require('./../client/api/models/payment'),
+    Authorize = require('./../client/api/models/onAuthorize'),
     // BaseCategoryController = require('./api/controllers/baseCategoyController'),
-    User = require('./../api/models/user'),
+    User = require('./../client/api/models/user'),
     bodyParser = require('body-parser'),
     _ = require('underscore'),
     session = require('express-session'),
@@ -25,11 +25,11 @@ var server = null;
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://adminarsal:jewelArsal@localhost:27017/uwebdb');
 
-require('./../api/controllers/userController')(passport);
+require('./../client/api/controllers/userController')(passport);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const webapp = __dirname + '/../api/web-app';
+const webapp = __dirname + '/../client/api/web-app';
 app.use(express.static(path.resolve(webapp)));
 app.use(express.static(path.resolve(webapp+'/jxjljzv')));
 
@@ -60,11 +60,11 @@ var upload = multer({ storage: storage });
 
 // For UI
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/../api/web-app/login.html'));
+    res.sendFile(path.resolve(__dirname + '/../client/api/web-app/login.html'));
 });
 
 app.all('/auth', passport.authenticate('local-login'), function(req, res){
-    res.sendfile(path.resolve(__dirname + '/../api/web-app/jxjljzv/main.html'));
+    res.sendfile(path.resolve(__dirname + '/../client/api/web-app/jxjljzv/main.html'));
 });
 
 app.use(function (req, res, next) {
@@ -103,7 +103,7 @@ app.get('/me', function(req, res){
     // });
 
 // api
-var routes = require('./../api/routes/uwebMongo');
+var routes = require('./../client/api/routes/uwebMongo');
 routes(app, upload);
 
 server = app.listen(port);
