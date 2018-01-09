@@ -1,0 +1,14 @@
+.small-tbl-font{
+    font-size: 12px;
+}
+.small-tbl-head{
+    font-size: 14px;
+    font-weight: bold;
+}
+.small-tbl-btn{
+    border-radius: .25rem;
+    font-size: 12px;
+}
+.val-cell{
+    padding: 3px;
+}
