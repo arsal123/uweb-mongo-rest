@@ -14,6 +14,12 @@
     font-size: 12px;
     margin-bottom: 4px;
 }
+.md-btn{
+    font-size: 14px;
+    margin: 4px;
+    padding: 6px;
+    border-radius: .25rem;
+}
 .val-cell{
     padding: 3px;
 }

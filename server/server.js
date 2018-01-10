@@ -51,7 +51,7 @@ var storage = multer.diskStorage({
         cb(null, __dirname + '/../../shared-img/item/');
     },
     filename: function(req, file, cb) {
-        var finalFileName = req.query.fileName + '.' + file.mimetype.split('/')[1];
+        var finalFileName = req.query.fileName;
         cb(null, finalFileName);
     }
 });

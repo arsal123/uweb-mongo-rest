@@ -31,11 +31,10 @@
             </select>
             <input type="text" ng-model="item.price" placeholder="price" name="price">
             <input type="text" ng-model="item.weight" placeholder="weight in grams">
-            <input type="text" ng-model="item.img_path" placeholder="image path">
-            <input type="file" file-model="files">
-            <button ng-click="uploadImg()">upload</button>
-            <button ng-if="addOperation" ng-click="addItem()">Add</button>
-            <button ng-if="updateOperation" ng-click="updateItem(item)">Update</button>
+            <span>item image: {{item.img_path}}</span><input type="file" file-model="files">
+            <!--<button ng-click="uploadImg()">upload</button>-->
+            <button class="md-btn" ng-if="addOperation" ng-click="addItem()">Add</button>
+            <button class="md-btn" ng-if="updateOperation" ng-click="updateItem(item)">Update</button>
         </form>
         </p>
 
@@ -49,7 +48,7 @@
             <div class="col-md-1 small-tbl-head val-cell">Weight</div>
             <div class="col-md-1 small-tbl-head val-cell">Last Update</div>
             <div class="col-md-2 small-tbl-head val-cell">Image</div>
-            <div class="col-md-2 small-tbl-head val-cell">Img Path</div>
+            <div class="col-md-2 small-tbl-head val-cell">Image File</div>
             <div class="col-md-1 small-tbl-head val-cell">Operations</div>
           </div>
           <div class="row" ng-repeat="item in items">
@@ -58,9 +57,8 @@
             <div class="col-md-1 small-tbl-font val-cell">{{item.price}}</div>
             <div class="col-md-1 small-tbl-font val-cell">{{item.weight}}</div>
             <div class="col-md-1 small-tbl-font val-cell">{{item.last_update | date}}</div>
-            <div class="col-md-2 val-cell"><img class="img-thumbnail" src="{{item.img_path}}" alt="..." ></div>
+            <div class="col-md-2 val-cell"><img class="img-thumbnail" src="item/{{item.img_path}}" alt="..." ></div>
               <div class="col-md-2 small-tbl-font val-cell">{{item.img_path}}</div>
-
             <div class="col-md-1 small-tbl-font val-cell">
               <button class="small-tbl-btn" ng-click="startUpdate(item)">Update</button>&nbsp;
               <button class="small-tbl-btn" ng-click="deleteItem(item)">Delete</button>

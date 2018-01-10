@@ -58,63 +58,9 @@
                 getCategories();
             }
 
-            $scope.addItem = () => {
-                $http({
-                    method: 'POST',
-                    url: '/item',
-                    data: $scope.item
-                })
-                    .then(function (res) {
-                        $log.info('Response from post:' + JSON.stringify(res.data));
-                        $scope.item = {}
-                        getItems()
-                    })
-            }
-
-            $scope.startUpdate = (item) => {
-                $scope.addOperation = false;
-                $scope.updateOperation = true;
-
-                // $log.debug(JSON.stringify(item));
-
-                $scope.item = item;
-            }
-
-            $scope.updateItem = (item) => {
-                $log.debug('Pre Update Call: ' + JSON.stringify(item));
-                const url1 = '/item/' + item._id;
-                $log.debug('Calling url:' + url1);
-
-                $http({
-                    method: 'PUT',
-                    url: url1,
-                    data: item
-                })
-                    .then(function (res) {
-                        $log.info('Response from put:' + JSON.stringify(res.data));
-                        init();
-
-                    });
-
-                // init();
-            }
-
-            $scope.deleteItem = (item) => {
-                $http({
-                    method: 'DELETE',
-                    url: '/item/' + item._id,
-                })
-                    .then(function (res) {
-                        $log.info('Response from delete:' + JSON.stringify(res.data));
-                        getItems();
-                    })
-            }
-
-            $scope.uploadImg = () => {
+            let uploadImg = (fileName) => {
                 var formData = new FormData();
 
-                //Add file name
-                var fileName = $scope.item._id + '-' + $scope.item.name.replace(/ /g,"_");
                 var itemPath = document.getElementById('catSelectView').selectedOptions[0].label;
                 if (itemPath){
                     itemPath += '/'
@@ -141,11 +87,75 @@
 
                 }).then(function (res){
                     console.log(res);
-                    
+
                 }, function(err) {
                     console.log(err);
                 });
             };
+
+
+            $scope.addItem = () => {
+                $http({
+                    method: 'POST',
+                    url: '/item',
+                    data: $scope.item
+                })
+                    .then(function (res) {
+                        $log.info('Response from post:' + JSON.stringify(res.data));
+                        $scope.item = {}
+                        getItems()
+                    })
+            }
+
+            $scope.startUpdate = (item) => {
+                $scope.addOperation = false;
+                $scope.updateOperation = true;
+
+                // $log.debug(JSON.stringify(item));
+
+                $scope.item = item;
+            }
+
+            $scope.updateItem = (item) => {
+
+                let fileName;
+                if ($scope.files){
+                    fileName = $scope.item._id + '-' + $scope.item.name.replace(/ /g,"_") + '.' + $scope.files[0].type.split('/')[1];
+                    uploadImg(fileName);
+                }
+
+                fileName && (item.img_path = fileName);
+
+                $log.debug('Pre Update Call: ' + JSON.stringify(item));
+                // const url1 = '/item/' + item._id;
+                // $log.debug('Calling url:' + url1);
+
+                $http({
+                    method: 'PUT',
+                    url: url1,
+                    data: item
+                })
+                    .then(function (res) {
+                        $log.info('Response from put:' + JSON.stringify(res.data));
+                        init();
+
+                    });
+
+
+                // init();
+
+            }
+
+            $scope.deleteItem = (item) => {
+                $http({
+                    method: 'DELETE',
+                    url: '/item/' + item._id,
+                })
+                    .then(function (res) {
+                        $log.info('Response from delete:' + JSON.stringify(res.data));
+                        getItems();
+                    })
+            }
 
             // Start of command execution
             init();
