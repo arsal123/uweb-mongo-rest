@@ -4,8 +4,17 @@
             return {
                 restrict: 'A',
                 link: function(scope, element, attrs) {
+                    console.log('COMING IN fileModel');
                     console.log(element);
                     element.on('change', function() {
+                        // console.log('COMING IN change-event - fileModel');
+
+                        if(!scope.item.name){
+                            alert('Please enter item name before choosing image file')
+                            element[0].files = null;
+                            return;
+                        }
+                        console.log('COMING AFTER warning');
                         $parse(attrs.fileModel).assign(scope, element[0].files);
                         scope.$apply();
                     });
@@ -24,7 +33,7 @@
                         console.log('Got response: ' + JSON.stringify(res.data));
                         $scope.data.categories = res.data;
                     }, function (err) {
-
+                        console.error('Err from Category: ' + err);
                     });
             }
 
@@ -103,7 +112,16 @@
 
             $scope.uploadImg = () => {
                 var formData = new FormData();
-                console.log($scope.files);
+
+                //Add file name
+                var fileName = $scope.item._id + '-' + $scope.item.name.replace(/ /g,"_");
+                var itemPath = document.getElementById('catSelectView').selectedOptions[0].label;
+                if (itemPath){
+                    itemPath += '/'
+                }
+
+                console.log('REQ FILE NAME: ' + fileName);
+
                 angular.forEach($scope.files, function(file){
                     formData.append('file', file);
                 });
@@ -112,6 +130,10 @@
                     method: 'POST',
                     url: '/item/fileupload',
                     data: formData,
+                    params:{
+                        fileName: fileName,
+                        path: itemPath
+                    },
                     transformRequest: angular.identity,
                     headers: {
                         'Content-Type': undefined

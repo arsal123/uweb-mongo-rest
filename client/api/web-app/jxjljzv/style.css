@@ -1,3 +1,7 @@
+.main-frame{
+    border-width: 14px;
+    padding: 22px;
+}
 .small-tbl-font{
     font-size: 12px;
 }
@@ -8,6 +12,7 @@
 .small-tbl-btn{
     border-radius: .25rem;
     font-size: 12px;
+    margin-bottom: 4px;
 }
 .val-cell{
     padding: 3px;

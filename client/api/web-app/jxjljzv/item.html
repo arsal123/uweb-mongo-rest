@@ -18,14 +18,14 @@
 <body ng-app="jewelCrud" ng-controller="itemController">
   <div w3-include-html="menu.html"></div>
 <div class="wrapper">
-    <div class="display">
+    <div class="display main-frame">
         <p>
         <h4>Create Item</h4>
         <form name="itemForm">
             <input type="text" ng-model="item.name" placeholder="name" name="name" required>
             <!--<span ng-show="categoryForm.name.$touched && categoryForm.name.$invalid">The name is required.</span>-->
             <input type="text" ng-model="item.desc" placeholder="desc" name="desc">
-            <select name="catSelect" ng-model="item.category_id" required>
+            <select id="catSelectView" ng-model="item.category_id" required>
                 <option value="">Please select category<option>
                 <option ng-repeat="cat in data.categories" value="cat._id">{{cat.name}}</option>
             </select>
@@ -49,8 +49,8 @@
             <div class="col-md-1 small-tbl-head val-cell">Weight</div>
             <div class="col-md-1 small-tbl-head val-cell">Last Update</div>
             <div class="col-md-2 small-tbl-head val-cell">Image</div>
-            <div class="col-md-1 small-tbl-head val-cell">Img Path</div>
-            <div class="col-md-2 small-tbl-head val-cell">Operations</div>
+            <div class="col-md-2 small-tbl-head val-cell">Img Path</div>
+            <div class="col-md-1 small-tbl-head val-cell">Operations</div>
           </div>
           <div class="row" ng-repeat="item in items">
             <div class="col-md-2 small-tbl-font val-cell">{{item.name}}</div>
@@ -58,9 +58,10 @@
             <div class="col-md-1 small-tbl-font val-cell">{{item.price}}</div>
             <div class="col-md-1 small-tbl-font val-cell">{{item.weight}}</div>
             <div class="col-md-1 small-tbl-font val-cell">{{item.last_update | date}}</div>
-            <div class="col-md-2 small-tbl-head val-cell">Image</div>
-            <div class="col-md-1 small-tbl-font val-cell">{{item.img_path}}</div>
-            <div class="col-md-2 small-tbl-font val-cell">
+            <div class="col-md-2 val-cell"><img class="img-thumbnail" src="{{item.img_path}}" alt="..." ></div>
+              <div class="col-md-2 small-tbl-font val-cell">{{item.img_path}}</div>
+
+            <div class="col-md-1 small-tbl-font val-cell">
               <button class="small-tbl-btn" ng-click="startUpdate(item)">Update</button>&nbsp;
               <button class="small-tbl-btn" ng-click="deleteItem(item)">Delete</button>
             </div>
