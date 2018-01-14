@@ -14,55 +14,58 @@
 <script src="itemController.js"></script>
 
 <link rel="stylesheet" href="../main.css">
+<link rel="stylesheet" href="style.css">
 <body ng-app="jewelCrud" ng-controller="itemController">
   <div w3-include-html="menu.html"></div>
 <div class="wrapper">
-    <div class="display">
+    <div class="display main-frame">
         <p>
         <h4>Create Item</h4>
         <form name="itemForm">
             <input type="text" ng-model="item.name" placeholder="name" name="name" required>
             <!--<span ng-show="categoryForm.name.$touched && categoryForm.name.$invalid">The name is required.</span>-->
             <input type="text" ng-model="item.desc" placeholder="desc" name="desc">
-            <select name="catSelect" ng-model="item.category_id" required>
+            <select id="catSelectView" ng-model="item.category_id" required>
                 <option value="">Please select category<option>
                 <option ng-repeat="cat in data.categories" value="cat._id">{{cat.name}}</option>
             </select>
             <input type="text" ng-model="item.price" placeholder="price" name="price">
-            <input type="text" ng-model="item.weight" placeholder="weight">
-            <input type="text" ng-model="item.img_path" placeholder="image path">
-            <input type="file" file-model="files">
-            <button ng-click="uploadImg()">upload</button>
-            <button ng-if="addOperation" ng-click="addItem()">Add</button>
-            <button ng-if="updateOperation" ng-click="updateItem(item)">Update</button>
+            <input type="text" ng-model="item.weight" placeholder="weight in grams">
+            <span>item image: {{item.img_path}}</span><input type="file" file-model="files">
+            <!--<button ng-click="uploadImg()">upload</button>-->
+            <button class="md-btn" ng-if="addOperation" ng-click="addItem()">Add</button>
+            <button class="md-btn" ng-if="updateOperation" ng-click="updateItem(item)">Update</button>
         </form>
         </p>
 
         <p>
-<div class="">
-  <h4>List of Items in database</h4>
-  <div class="row">
-    <div class="col-2">Name</div>
-    <div class="col-2">Description</div>
-    <div class="col-1">Price</div>
-    <div class="col-1">Weight</div>
-    <div class="col-1">Last Update</div>
-    <div class="col-3">Img Path</div>
-    <div class="col-2">Operations</div>
-  </div>
-  <div class="row" ng-repeat="item in items">
-    <div class="col-2">{{item.name}}</div>
-    <div class="col-2">{{item.desc}}</div>
-    <div class="col-1">{{item.price}}</div>
-    <div class="col-1">{{item.weight}}</div>
-    <div class="col-2">{{item.last_update | date}}</div>
-    <div class="col-3">{{item.img_path}}</div>
-    <div class="col-2">
-      <button ng-click="startUpdate(item)">Update</button>&nbsp;
-      <button ng-click="deleteItem(item)">Delete</button>
-    </div>
-</div>
-</p>
+        <div class="">
+          <h4>List of Items in database</h4>
+          <div class="row">
+            <div class="col-md-2 small-tbl-head val-cell">Name</div>
+            <div class="col-md-2 small-tbl-head val-cell">Description</div>
+            <div class="col-md-1 small-tbl-head val-cell">Price</div>
+            <div class="col-md-1 small-tbl-head val-cell">Weight</div>
+            <div class="col-md-1 small-tbl-head val-cell">Last Update</div>
+            <div class="col-md-2 small-tbl-head val-cell">Image</div>
+            <div class="col-md-2 small-tbl-head val-cell">Image File</div>
+            <div class="col-md-1 small-tbl-head val-cell">Operations</div>
+          </div>
+          <div class="row" ng-repeat="item in items">
+            <div class="col-md-2 small-tbl-font val-cell">{{item.name}}</div>
+            <div class="col-md-2 small-tbl-font val-cell">{{item.desc}}</div>
+            <div class="col-md-1 small-tbl-font val-cell">{{item.price}}</div>
+            <div class="col-md-1 small-tbl-font val-cell">{{item.weight}}</div>
+            <div class="col-md-1 small-tbl-font val-cell">{{item.last_update | date}}</div>
+            <div class="col-md-2 val-cell"><img class="img-thumbnail" src="item/{{item.img_path}}" alt="..." ></div>
+              <div class="col-md-2 small-tbl-font val-cell">{{item.img_path}}</div>
+            <div class="col-md-1 small-tbl-font val-cell">
+              <button class="small-tbl-btn" ng-click="startUpdate(item)">Update</button>&nbsp;
+              <button class="small-tbl-btn" ng-click="deleteItem(item)">Delete</button>
+            </div>
+          </div>
+        </div>
+        </p>
 <script>
     w3.includeHTML();
 </script>

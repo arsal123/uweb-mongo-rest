@@ -32,6 +32,7 @@ app.use(bodyParser.json());
 const webapp = __dirname + '/../client/api/web-app';
 app.use(express.static(path.resolve(webapp)));
 app.use(express.static(path.resolve(webapp+'/jxjljzv')));
+app.use(express.static(path.resolve(__dirname + '/../../shared-img')));
 
 // Require for passport 
 app.use(session({ 
@@ -43,13 +44,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // creates a persistent login sessions
 
-// Rename the file
+// Saving images
 var storage = multer.diskStorage({
     destination: function(req, file, cb){ 
-        cb(null, __dirname + '/images/');
+        // cb(null, __dirname + '/../../shared-img/item/' + req.query.itemPath);
+        cb(null, __dirname + '/../../shared-img/item/');
     },
     filename: function(req, file, cb) {
-        cb(null, Date.now() + '-'+ file.originalname);
+        var finalFileName = req.query.fileName;
+        cb(null, finalFileName);
     }
 });
 
