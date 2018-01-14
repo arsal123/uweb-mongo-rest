@@ -127,7 +127,7 @@
                 fileName && (item.img_path = fileName);
 
                 $log.debug('Pre Update Call: ' + JSON.stringify(item));
-                // const url1 = '/item/' + item._id;
+                const url1 = '/item/' + item._id;
                 // $log.debug('Calling url:' + url1);
 
                 $http({
