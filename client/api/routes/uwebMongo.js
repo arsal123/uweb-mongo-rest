@@ -21,6 +21,9 @@ module.exports = function (app, upload) {
         .get(category.list_all_category)
         .post(category.create_a_category);
 
+    app.route('/ldb/category')
+        .get(category.list_all_category);
+        
     app.route('/category/:id')
         .get(category.read_a_category)
         .put(category.update_a_category)
@@ -49,6 +52,9 @@ module.exports = function (app, upload) {
         .put(item.update_a_item)
         .delete(item.delete_a_item);
 
+    app.route('/ldb/item')
+        .get(item.list_all_item);
+
     app.route('/item/fileupload')
         .post(upload.any(), item.upload_a_img);
 
@@ -76,10 +82,10 @@ module.exports = function (app, upload) {
         .put(contactUs.update_a_contact_us)
         .delete(contactUs.delete_a_contact_us);
 
-    app.route('/thing')
+    app.route('/ldb/thing')
         .post(thing.create_a_thing);
 
-    app.route('/onAuthorize')
+    app.route('/ldb/onAuthorize')
         .post(onAuthorize.create_authorize);
 };
 
