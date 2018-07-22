@@ -136,7 +136,6 @@ function cleanup() {
         mongoose.disconnect();
         process.exit(1);
     }, 30 * 1000);
-
 }
 
 process.on('SIGINT', cleanup);

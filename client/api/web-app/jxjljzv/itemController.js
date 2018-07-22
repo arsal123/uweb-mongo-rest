@@ -21,8 +21,7 @@
                 }
             };
         }])
-        .controller('itemController', ['$scope', '$http', '$log', function ($scope, $http, $log) {
-
+        .controller('itemController', ['$scope', '$http', '$log', '$window', function ($scope, $http, $log, $window) {
 
             let getCategories = () => {
                 $http({
@@ -114,6 +113,8 @@
                 // $log.debug(JSON.stringify(item));
 
                 $scope.item = item;
+                $window.scrollTo(0, 0);
+                $log.debug('Scrolling to top');
             }
 
             $scope.updateItem = (item) => {
@@ -141,7 +142,7 @@
 
                     });
 
-
+                    
                 // init();
 
             }
