@@ -23,6 +23,8 @@
         }])
         .controller('itemController', ['$scope', '$http', '$log', '$window', function ($scope, $http, $log, $window) {
 
+            $scope.searchText = '';
+            
             let getCategories = () => {
                 $http({
                     method: 'GET',
