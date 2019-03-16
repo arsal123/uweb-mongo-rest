@@ -53,7 +53,8 @@
           </form>
           <h4>List of Items in database</h4>
           <div class="row">
-            <div class="col-md-2 small-tbl-head val-cell">Name</div>
+            <div class="col-md-1 small-tbl-head val-cell">#</div>
+            <div class="col-md-1 small-tbl-head val-cell">Name</div>
             <div class="col-md-2 small-tbl-head val-cell">Description</div>
             <div class="col-md-1 small-tbl-head val-cell">Price</div>
             <div class="col-md-1 small-tbl-head val-cell">Weight</div>
@@ -63,7 +64,8 @@
             <div class="col-md-1 small-tbl-head val-cell">Operations</div>
           </div>
           <div class="row" ng-repeat="item in items | filter:searchText">
-            <div class="col-md-2 small-tbl-font val-cell">{{item.name}}</div>
+            <div class="col-md-1 small-tbl-font val-cell">{{$index + 1}}</div>
+            <div class="col-md-1 small-tbl-font val-cell">{{item.name}}</div>
             <div class="col-md-2 small-tbl-font val-cell">{{item.desc}}</div>
             <div class="col-md-1 small-tbl-font val-cell">{{item.price}}</div>
             <div class="col-md-1 small-tbl-font val-cell">{{item.weight}}</div>
