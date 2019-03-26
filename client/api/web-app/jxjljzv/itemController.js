@@ -62,6 +62,7 @@
                 })
                     .then(function (res) {
                         console.log('Got response: ' + JSON.stringify(res.data));
+                        if (!$scope.data.categories) getCategories();
                         let items = addCategoryName($scope.data.categories, res.data);
                         $scope.items = items;
 
