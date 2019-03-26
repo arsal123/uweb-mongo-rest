@@ -60,9 +60,9 @@
             <div class="col-md-1 small-tbl-head val-cell">Price</div>
             <div class="col-md-1 small-tbl-head val-cell">Weight</div>
             <!-- <div class="col-md-1 small-tbl-head val-cell">Last Update</div> -->
-            <div class="col-md-2 small-tbl-head val-cell">Image</div>
-            <div class="col-md-2 small-tbl-head val-cell">Image File</div>
-            <div class="col-md-1 small-tbl-head val-cell">Operations</div>
+            <div class="col-md-3 small-tbl-head val-cell">Image</div>
+            <!--<div class="col-md-2 small-tbl-head val-cell">Image File</div>-->
+            <div class="col-md-2 small-tbl-head val-cell">Operations</div>
           </div>
           <div class="row" ng-repeat="item in items | filter:searchText">
             <div class="col-md-1 small-tbl-font val-cell">{{$index + 1}}</div>
@@ -72,9 +72,9 @@
             <div class="col-md-1 small-tbl-font val-cell">{{item.price}}</div>
             <div class="col-md-1 small-tbl-font val-cell">{{item.weight}}</div>
             <!-- <div class="col-md-1 small-tbl-font val-cell">{{item.last_update | date}}</div> -->
-            <div class="col-md-2 val-cell"><img class="img-thumbnail" src="item/{{item.img_path}}" alt="..."></div>
-            <div class="col-md-2 small-tbl-font val-cell">{{item.img_path}}</div>
-            <div class="col-md-1 small-tbl-font val-cell">
+            <div class="col-md-3 val-cell"><img class="uweb-img-row" src="item/{{item.img_path}}" alt="..."></div>
+            <!--<div class="col-md-2 small-tbl-font val-cell">{{item.img_path}}</div>-->
+            <div class="col-md-2 small-tbl-font val-cell">
               <button class="small-tbl-btn" ng-click="startUpdate(item)">Update</button>&nbsp;
               <button class="small-tbl-btn" ng-click="deleteItem(item)">Delete</button>
             </div>
