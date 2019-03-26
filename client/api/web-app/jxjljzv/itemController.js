@@ -38,6 +38,23 @@
                     });
             }
 
+            let addCategoryName = (categories, items) => {
+                // Validation
+                if (!items || !categories){
+                    return items;
+                }
+
+                for (item in items) {
+                    for (category in categories) {
+                        if (categories[category]._id == items[item].category_id){
+                            items[item].categoryName = categories[category].name;
+                            break;
+                        }
+                    }
+                }
+                return items;
+            }
+
             let getItems = () => {
                 $http({
                     method: 'GET',
@@ -45,7 +62,9 @@
                 })
                     .then(function (res) {
                         console.log('Got response: ' + JSON.stringify(res.data));
-                        $scope.items = res.data;
+                        let items = addCategoryName($scope.data.categories, res.data);
+                        $scope.items = items;
+
                     }, function (err) {
 
                     });
