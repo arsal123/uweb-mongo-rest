@@ -28,7 +28,7 @@ exports.create_a_base_category = function (req, res) {
 };
 
 exports.update_a_base_category = function (req, res) {
-    BaseCategory.findOneAndUpdate(req.params.BaseCategoryId, req.body, { new: true }, function (err, BaseCategory) {
+    BaseCategory.findOneAndUpdate({_id: req.params.id}, req.body, { new: true }, function (err, BaseCategory) {
         if (err)
             res.send(err);
         res.json(BaseCategory);
