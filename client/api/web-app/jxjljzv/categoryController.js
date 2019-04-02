@@ -17,14 +17,55 @@
                     });
             }
 
+            let addBaseCat = (categories, baseCategories) => {
+                // let finalCategories = _.cloneDeep(categories);
+                let finalCategories = categories;
+                finalCategories.forEach((category) => {
+                    for (let i =0; i < baseCategories.length; i++) {
+                        if(baseCategories[i]._id === category.base_category_id) {
+                            category.baseCat = baseCategories[i].name;
+                            break;
+                        }
+                    }
+                });
+                return finalCategories;
+            }
+            
+            let addParentCat = (categories) => {
+                // let finalCategories = _.cloneDeep(categories);
+                let finalCategories = categories;
+                finalCategories.forEach((category) => {
+                    for (let i =0; i < categories.length; i++) {
+                        if(categories[i]._id === category.parent_id) {
+                            category.parentCat = categories[i].name;
+                            break;
+                        }
+                    }
+                });
+                return finalCategories; 
+            }
+
+            let addBaseAndParentCategory = (categories) => {
+                // let finalCategories = _.cloneDeep(categories);
+                let finalCategories = categories;
+                finalCategories = addBaseCat(categories, $scope.data.baseCategories);
+                finalCategories = addParentCat(categories);                
+                return finalCategories;
+            } 
+
             let getCategories = () => {
                 $http({
                     method: 'GET',
                     url: '/category'
                 })
                     .then(function (res) {
-                        console.log('Got response: ' + JSON.stringify(res.data));
-                        $scope.data.categories = res.data;
+                        let categories = res.data;
+                        console.log('Got response: ' + JSON.stringify(categories));
+                        if (Array.isArray(categories)){
+                            $scope.data.categories = addBaseAndParentCategory(res.data);
+                        } else {
+                            alert('You are logged out, please log in');
+                        } 
                     }, function (err) {
 
                     });
