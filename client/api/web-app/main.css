@@ -5,14 +5,12 @@ body {
     margin-bottom: 14px;
 }
 .display {
-    max-width: 60em;
+    /*max-width: 60em;*/
     padding: 15px 35px 45px;
     margin: 0 auto;
     background-color: #eee;
     border: 25px solid rgba(0, 0, 0, 0.1);
     border-radius: 46px;
-
-
 }
 p + p {
     margin-top: 30px; 
@@ -28,4 +26,10 @@ li {
 .heading-height {
     line-height: 3em;
     margin-bottom: 1em; 
+}
+.img-label {
+    font-weight: bold;
+}
+h4.main-heading {
+    color: teal;
 }

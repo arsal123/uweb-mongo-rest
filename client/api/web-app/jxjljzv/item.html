@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MY APP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MY APP</title>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
@@ -19,73 +19,83 @@
 <link rel="stylesheet" href="style.css">
 
 <body ng-app="jewelCrud" ng-controller="itemController">
-  <div w3-include-html="menu.html"></div>
-  <div class="wrapper">
+<div w3-include-html="menu.html"></div>
+<div class="wrapper">
     <div class="display main-frame">
-      <p>
-        <h4>Create Item</h4>
+        <p>
+        <h4 class="main-heading">Create Item</h4>
         <form name="itemForm">
-          <input type="text" ng-model="item.name" placeholder="name" name="name" required>
-          <!--<span ng-show="categoryForm.name.$touched && categoryForm.name.$invalid">The name is required.</span>-->
-          <input type="text" ng-model="item.desc" placeholder="desc" name="desc">
-          <select id="catSelectView" ng-model="item.category_id" required>
-            <option value="">Please select category<option>
-            <option ng-repeat="cat in data.categories" ng-value="cat._id">{{cat.name}}</option>
-          </select>
-          <input type="text" ng-model="item.price" placeholder="price" name="price">
-          <input type="text" ng-model="item.weight" placeholder="weight in grams">
-          <span>item image: {{item.img_path}}</span><input type="file" file-model="files">
-          <!--<button ng-click="uploadImg()">upload</button>-->
-          <button class="md-btn" ng-if="addOperation" ng-click="addItem()">Add</button>
-          <button class="md-btn" ng-if="updateOperation" ng-click="updateItem(item)">Update</button>
+            <input type="text" ng-model="item.name" placeholder="name" name="name" required>
+            <!--<span ng-show="categoryForm.name.$touched && categoryForm.name.$invalid">The name is required.</span>-->
+            <input type="text" ng-model="item.desc" placeholder="desc" name="desc">
+            <select id="catSelectView" ng-model="item.category_id" required>
+                <option value="">Please select category
+                <option>
+                <option ng-repeat="cat in data.categories" ng-value="cat._id">{{cat.name}}</option>
+            </select>
+            <input type="text" ng-model="item.price" placeholder="price" name="price">
+            <input type="text" ng-model="item.weight" placeholder="weight in grams">
+            <br>
+            <span class="img-label">Image Front: </span> <span>{{item.img_path}}</span><input type="file"
+                                                                                              file-model="files">
+            <span class="img-label">Image Side: </span> <span> {{item.side_img_path}}</span><input type="file"
+                                                                                                   file-model="files">
+            <!--<button ng-click="uploadImg()">upload</button>-->
+            <button class="md-btn" ng-if="addOperation" ng-click="addItem()"> Add</button>
+            <button class="md-btn" ng-if="updateOperation" ng-click="updateItem(item)"> Update</button>
         </form>
-      </p>
+        </p>
 
-      <p> 
+        <p>
         <div class="">
-          <form>
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                <input type="text" class="form-control" placeholder="Search the item" ng-model="searchText">
-              </div>
+            <form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search the item" ng-model="searchText">
+                    </div>
+                </div>
+            </form>
+            <br>
+            <h4 class="main-heading">List of Items in database</h4>
+            <br>
+            <div class="row item-row">
+                <div class="col-md-1 small-tbl-head val-cell">#</div>
+                <div class="col-md-1 small-tbl-head val-cell">Category</div>
+                <div class="col-md-1 small-tbl-head val-cell">Name</div>
+                <div class="col-md-2 small-tbl-head val-cell">Description</div>
+                <div class="col-md-1 small-tbl-head val-cell">Price</div>
+                <div class="col-md-1 small-tbl-head val-cell">Weight</div>
+                <!-- <div class="col-md-1 small-tbl-head val-cell">Last Update</div> -->
+                <div class="col-md-2 small-tbl-head val-cell">Image Front</div>
+                <div class="col-md-2 small-tbl-head val-cell">Image Side</div>
+                <!--<div class="col-md-2 small-tbl-head val-cell">Image File</div>-->
+                <div class="col-md-1 small-tbl-head val-cell">Operations</div>
             </div>
-          </form>
-          <h4>List of Items in database</h4>
-          <div class="row">
-            <div class="col-md-1 small-tbl-head val-cell">#</div>
-            <div class="col-md-1 small-tbl-head val-cell">Category</div>
-            <div class="col-md-1 small-tbl-head val-cell">Name</div>
-            <div class="col-md-2 small-tbl-head val-cell">Description</div>
-            <div class="col-md-1 small-tbl-head val-cell">Price</div>
-            <div class="col-md-1 small-tbl-head val-cell">Weight</div>
-            <!-- <div class="col-md-1 small-tbl-head val-cell">Last Update</div> -->
-            <div class="col-md-3 small-tbl-head val-cell">Image</div>
-            <!--<div class="col-md-2 small-tbl-head val-cell">Image File</div>-->
-            <div class="col-md-2 small-tbl-head val-cell">Operations</div>
-          </div>
-          <div class="row" ng-repeat="item in items | filter:searchText">
-            <div class="col-md-1 small-tbl-font val-cell">{{$index + 1}}</div>
-            <div class="col-md-1 small-tbl-font val-cell">{{item.categoryName}}</div>
-            <div class="col-md-1 small-tbl-font val-cell">{{item.name}}</div>
-            <div class="col-md-2 small-tbl-font val-cell">{{item.desc}}</div>
-            <div class="col-md-1 small-tbl-font val-cell">{{item.price}}</div>
-            <div class="col-md-1 small-tbl-font val-cell">{{item.weight}}</div>
-            <!-- <div class="col-md-1 small-tbl-font val-cell">{{item.last_update | date}}</div> -->
-            <div class="col-md-3 val-cell"><img class="uweb-img-row" src="item/{{item.img_path}}" alt="..."></div>
-            <!--<div class="col-md-2 small-tbl-font val-cell">{{item.img_path}}</div>-->
-            <div class="col-md-2 small-tbl-font val-cell">
-              <button class="small-tbl-btn" ng-click="startUpdate(item)">Update</button>&nbsp;
-              <button class="small-tbl-btn" ng-click="deleteItem(item)">Delete</button>
+            <div class="row item-row" ng-repeat="item in items | filter:searchText">
+                <div class="col-md-1 small-tbl-font val-cell">{{$index + 1}}</div>
+                <div class="col-md-1 small-tbl-font val-cell">{{item.categoryName}}</div>
+                <div class="col-md-1 small-tbl-font val-cell">{{item.name}}</div>
+                <div class="col-md-2 small-tbl-font val-cell">{{item.desc}}</div>
+                <div class="col-md-1 small-tbl-font val-cell">{{item.price}}</div>
+                <div class="col-md-1 small-tbl-font val-cell">{{item.weight}}</div>
+                <!-- <div class="col-md-1 small-tbl-font val-cell">{{item.last_update | date}}</div> -->
+                <div class="col-md-2 val-cell"><img class="uweb-img-row" src="item/{{item.img_path}}" alt="..."></div>
+                <div class="col-md-2 val-cell"><img class="uweb-img-row" src="item/{{item.side_img_path}}" alt="...">
+                </div>
+                <!--<div class="col-md-2 small-tbl-font val-cell">{{item.img_path}}</div>-->
+                <div class="col-md-1 small-tbl-font val-cell">
+                    <button class="small-tbl-btn" ng-click="startUpdate(item)">Update</button>&nbsp;
+                    <button class="small-tbl-btn" ng-click="deleteItem(item)">Delete</button>
+                </div>
             </div>
-          </div>
         </div>
-      </p>
-      <script>
-        w3.includeHTML();
-      </script>
+        </p>
+        <script>
+            w3.includeHTML();
+        </script>
     </div>
-  </div>
+</div>
 
 </body>
 
