@@ -37,9 +37,9 @@
             <input type="text" ng-model="item.weight" placeholder="weight in grams">
             <br>
             <span class="img-label">Image Front: </span> <span>{{item.img_path}}</span><input type="file"
-                                                                                              file-model="files">
+                                                                                              file-model="front_img_file">
             <span class="img-label">Image Side: </span> <span> {{item.side_img_path}}</span><input type="file"
-                                                                                                   file-model="files">
+                                                                                                   file-model="side_img_file">
             <!--<button ng-click="uploadImg()">upload</button>-->
             <button class="md-btn" ng-if="addOperation" ng-click="addItem()"> Add</button>
             <button class="md-btn" ng-if="updateOperation" ng-click="updateItem(item)"> Update</button>

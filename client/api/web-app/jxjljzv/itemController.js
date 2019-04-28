@@ -11,11 +11,12 @@
 
                         if(!scope.item.name){
                             alert('Please enter item name before choosing image file')
-                            element[0].files = null;
+                            element[0].front_img_file = null;
+                            element[0].side_img_file = null;
                             return;
                         }
-                        console.log('COMING AFTER warning');
                         $parse(attrs.fileModel).assign(scope, element[0].files);
+                        // $parse(attrs.fileModel).assign(scope, element[0].side_img_file);
                         scope.$apply();
                     });
                 }
@@ -89,9 +90,16 @@
 
                 console.log('REQ FILE NAME: ' + fileName);
 
-                angular.forEach($scope.files, function(file){
-                    formData.append('file', file);
-                });
+                if(fileName.indexOf('front') > -1){
+                    angular.forEach($scope.front_img_file, function (file) {
+                        formData.append('file', file);
+                    });
+                } else if (fileName.indexOf('side') > -1) {
+                    angular.forEach($scope.side_img_file, function(file){
+                        formData.append('file', file);
+                    });
+                }
+
 
                 $http({
                     method: 'POST',
@@ -141,13 +149,17 @@
 
             $scope.updateItem = (item) => {
 
-                let fileName;
-                if ($scope.files){
-                    fileName = $scope.item._id + '-' + $scope.item.name.replace(/ /g,"_") + '.' + $scope.files[0].type.split('/')[1];
-                    uploadImg(fileName);
-                }
 
-                fileName && (item.img_path = fileName);
+                if ($scope.front_img_file){
+                    let fileName = $scope.item._id.substr(0,4) + '_front_' + $scope.item.name.replace(/ /g,"_") + '.' + $scope.front_img_file[0].type.split('/')[1];
+                    uploadImg(fileName);
+                    fileName && (item.img_path = fileName);
+                }
+                if ($scope.side_img_file){
+                    let fileName = $scope.item._id.substr(0,4) + '_side_' + $scope.item.name.replace(/ /g,"_") + '.' + $scope.side_img_file[0].type.split('/')[1];
+                    uploadImg(fileName);
+                    fileName && (item.side_img_path = fileName);
+                }
 
                 $log.debug('Pre Update Call: ' + JSON.stringify(item));
                 const url1 = '/item/' + item._id;
