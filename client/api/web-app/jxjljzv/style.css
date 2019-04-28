@@ -34,3 +34,6 @@ img:hover {
 .val-cell{
     padding: 3px;
 }
+div.item-row{
+    margin-left: 1px;
+}

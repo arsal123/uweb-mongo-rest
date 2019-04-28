@@ -20,8 +20,8 @@ exports.read_a_item = function (req, res) {
 };
 
 exports.create_a_item = function (req, res) {
-    var new_category = new Item(req.body);
-    new_category.save(function (err, category) {
+    var new_item = new Item(req.body);
+    new_item.save(function (err, category) {
         if (err)
             res.send(err);
         res.json(category);

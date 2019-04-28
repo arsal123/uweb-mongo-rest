@@ -27,6 +27,9 @@ var item = new Schema({
     },
     img_path : {
         type: String
+    },
+    side_img_path : {
+        type: String
     }
 });
 
